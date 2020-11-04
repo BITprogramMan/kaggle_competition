@@ -36,7 +36,7 @@ def dataload():
         dtype={
             'lecture_id': 'int16',
             'tag': 'int16',
-            'l_part': 'int8',
+            'part': 'int8',
             'type_of': 'str'
         }
     )
@@ -47,7 +47,7 @@ def dataload():
         dtype={
             'question_id': 'int16',
             'bundle_id': 'int16',
-            'q_part': 'int8',
+            'part': 'int8',
             'tags': 'str'
         }
     )
@@ -63,6 +63,8 @@ def dataload():
 
     lectures['type_of'] = lectures['type_of'].map(
         {'concept': 0, 'intention': 1, 'solving question': 2, 'starter': 3}).astype(np.int8)
+    lectures=pd.get_dummies(lectures,columns=['part','type_of'])
+
 
 
 
